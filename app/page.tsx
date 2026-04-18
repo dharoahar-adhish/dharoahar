@@ -1,65 +1,129 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const wholeSpices = [
+  { name: "Clove", slug: "clove", image: "/products/clove.jpg" },
+  { name: "Cardamom", slug: "cardamom", image: "/products/cardamom.jpg" },
+  { name: "Cinnamon", slug: "cinnamon", image: "/products/cinnamon.jpg" },
+  { name: "Black Pepper", slug: "black-pepper", image: "/products/black-pepper.jpg" },
+  { name: "Cumin", slug: "cumin", image: "/products/cumin.jpg" },
+];
+
+const powderedSpices = [
+  { name: "Kashmiri Mirch", slug: "kashmiri-mirch", image: "/products/kashmiri-mirch.jpg" },
+  { name: "Degi Mirch", slug: "degi-mirch", image: "/products/degi-mirch.jpg" },
+  { name: "Cumin Powder", slug: "cumin-powder", image: "/products/cumin-powder.jpg" },
+  { name: "Garam Masala", slug: "garam-masala", image: "/products/garam-masala.jpg" },
+  { name: "Dhaniya Powder", slug: "dhaniya-powder", image: "/products/dhaniya-powder.jpg" },
+  { name: "Haldi Powder", slug: "haldi-powder", image: "/products/haldi-powder.jpg" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="w-full overflow-x-hidden">
+
+      {/* HERO */}
+      <section className="relative h-[50vh] flex items-center justify-center text-center text-white">
+        <img
+          src="/hero.jpg"
+          alt="hero"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+        <div className="absolute inset-0 bg-black/50" />
+
+        <div className="relative z-10 px-4">
+          <h1 className="text-2xl md:text-4xl font-semibold mb-2">
+            Premium Spices Built on Consistency
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-sm text-gray-200">
+            Rooted in origin. Delivered with discipline.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* WHOLE SPICES */}
+      <section className="bg-[#f7f5f2] max-w-6xl mx-auto px-4 py-6">
+        <h2 className="text-lg font-semibold mb-4 text-gray-900">
+          Whole Spices
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {wholeSpices.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/products/${item.slug}`}
+              className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-32 object-cover"
+              />
+              <div className="bg-white p-2 text-sm text-center text-gray-900">
+                {item.name}
+              </div>
+            </Link>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* POWDERED SPICES */}
+      <section className="bg-[#f7f5f2] max-w-6xl mx-auto px-4 py-6">
+        <h2 className="text-lg font-semibold mb-4 text-gray-900">
+          Powdered Spices
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {powderedSpices.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/products/${item.slug}`}
+              className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-32 object-cover"
+              />
+              <div className="bg-white p-2 text-sm text-center text-gray-900">
+                {item.name}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* FOUNDER */}
+      <section className="max-w-5xl mx-auto px-4 py-6">
+        <div className="bg-white rounded-lg shadow-sm p-4 flex items-center gap-4">
+
+          <div className="w-14 h-14 rounded-full overflow-hidden border">
+            <img
+              src="/founder.jpg"
+              alt="Founder"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold mb-1">
+              Founder’s Vision
+            </h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              Dharoahar delivers consistent, farm-sourced spices built on discipline,
+              trust, and long-term partnerships.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-[#111] text-gray-400 mt-6">
+        <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-center">
+          © 2026 Dharoahar Pvt. Ltd.
+        </div>
+      </footer>
+
+    </main>
   );
 }
